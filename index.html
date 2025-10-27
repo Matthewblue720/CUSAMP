@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CUSA Military Police (MP) — Fort Tedder" />
+  <title>CUSA MP | Fort Tedder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-0: #070b12;
+      --bg-1: #0b1220;
+      --bg-2: #0f1a2b;
+      --text: #e7eefc;
+      --muted: #a8b3c7;
+      --card: #0e1524;
+      --card-2: #0a1120;
+      --blue-1: #2e6ff2;
+      --blue-2: #1b4fd6;
+      --blue-3: #0e3aa6;
+      --success: #2ecc71;
+      --warning: #f0b90b;
+      --danger: #ff5c5c;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background: radial-gradient(1200px 800px at 10% -10%, var(--bg-2), var(--bg-1) 35%, var(--bg-0) 100%);color:var(--text);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* Banner */
+    .banner{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#0b1a33, #0a254a);border-bottom:1px solid #0b2a52}
+    .banner-inner{max-width:1200px;margin:0 auto;padding:.65rem 1rem;display:flex;gap:.75rem;align-items:center;justify-content:center;color:#cfe2ff;font-weight:600}
+    .banner span{opacity:.85}
+    .banner .warn{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid #224983;border-radius:999px;background:#0a1f3f}
+
+    /* Nav */
+    nav{position:sticky;top:42px;z-index:999;background:rgba(8,14,26,.75);backdrop-filter: blur(10px);border-bottom:1px solid rgba(255,255,255,.04)}
+    .nav-wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem}
+    .brand{display:flex;gap:.75rem;align-items:center}
+    .brand img{width:34px;height:34px;border-radius:8px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))}
+    .brand .title{display:flex;flex-direction:column}
+    .brand b{font-family:Rajdhani,Inter,sans-serif;letter-spacing:.08em;font-size:1rem}
+    .brand small{color:var(--muted);font-size:.78rem}
+    .links{display:flex;gap:1rem;flex-wrap:wrap}
+    .links a{font-weight:600;opacity:.95}
+    .links a:hover{color:#cfe2ff}
+    .cta{padding:.6rem 1rem;border-radius:999px;background:linear-gradient(180deg,var(--blue-1),var(--blue-2));box-shadow:0 6px 18px rgba(46,111,242,.35);border:1px solid #2b5fd1;font-weight:800}
+
+    /* Hero */
+    .hero{position:relative;min-height:78vh;display:grid;place-items:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;opacity:.24;filter:grayscale(20%) blur(0px)}
+    .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1000px 500px at 60% -10%, rgba(14,58,166,.35), transparent 60%), linear-gradient(to bottom, rgba(7,11,18,.6), rgba(7,11,18,.95))}
+    .hero-inner{position:relative;max-width:1100px;margin:0 auto;padding:6rem 1rem;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .7rem;border-radius:999px;border:1px solid #2550a0;background:rgba(17,38,78,.8);backdrop-filter: blur(8px);font-weight:700;color:#d7e6ff}
+    .badge svg{width:18px;height:18px}
+    .hero h1{font-family:Rajdhani,Inter,sans-serif;letter-spacing:.06em;font-size: clamp(2.4rem, 5.6vw, 4.4rem);line-height:1.03;margin:1.1rem 0}
+    .hero p{max-width:760px;margin:0 auto;color:#c4d4f2;font-size:1.05rem}
+    .hero-actions{margin-top:1.75rem;display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.2rem;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,#0f1f3e 0%, #0b162c 100%);box-shadow:var(--shadow);font-weight:800}
+    .btn.primary{border-color:#2a5be0;background:linear-gradient(180deg,var(--blue-1),var(--blue-3))}
+
+    /* Sections */
+    section{padding:84px 0}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
+    .section-title{text-align:center;margin-bottom:2.2rem}
+    .section-title h2{font-family:Rajdhani,Inter,sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.06em}
+    .section-title .div{width:90px;height:4px;background:linear-gradient(90deg,var(--blue-1),transparent);margin:.6rem auto;border-radius:999px}
+
+    .grid{display:grid;gap:1rem}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid rgba(255,255,255,.06);padding:1.2rem;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card h3{font-family:Rajdhani,Inter,sans-serif;font-size:1.2rem;letter-spacing:.05em;margin:.4rem 0 .4rem}
+    .card p{color:#b8c7e0;font-size:.98rem}
+
+    /* Checklist */
+    .checklist{display:grid;gap:1rem}
+    .check-item{display:flex;align-items:flex-start;gap:.8rem;background:rgba(13,22,38,.75);border:1px solid rgba(58,103,210,.28);padding:1rem;border-radius:12px}
+    .check-item svg{min-width:22px;margin-top:2px}
+
+    /* Tryout steps */
+    .steps{display:grid;gap:1rem;grid-template-columns:repeat(4,1fr)}
+    @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+    @media (max-width:600px){.steps{grid-template-columns:1fr}}
+    .step{background:linear-gradient(180deg,#0c1530,#0a1126);border:1px solid rgba(50,90,200,.3);padding:1.1rem;border-radius:14px;position:relative}
+    .step .num{position:absolute;top:10px;left:10px;font-weight:800;color:#8fb1ff;opacity:.6}
+
+    /* Links cards */
+    .links-grid{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1000px){.links-grid{grid-template-columns:1fr}}
+    .links-card{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:center}
+    .links-card img{width:110px;height:110px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,.08)}
+
+    /* HICOM */
+    .hicom-card{display:flex;gap:1rem;align-items:center}
+    .avatar{width:72px;height:72px;border-radius:50%;border:2px solid #2e6ff2;background:#0a1a33;display:grid;place-items:center;font-weight:800;color:#9dbbff}
+
+    /* Propaganda gallery placeholders */
+    .gallery{display:grid;gap:1rem;grid-template-columns:1.5fr 1fr}
+    @media (max-width:900px){.gallery{grid-template-columns:1fr}}
+    .placeholder{height:220px;background:linear-gradient(180deg,#0c1530,#0a1126);border:1px dashed #2a4fa5;color:#9dbbff;border-radius:14px;display:grid;place-items:center}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06);background:#070b12}
+    .footer-grid{display:grid;gap:1rem;grid-template-columns:1.5fr 1fr 1fr}
+    @media (max-width:900px){.footer-grid{grid-template-columns:1fr}}
+    .credits{color:#91a4c7;font-size:.9rem;text-align:center;padding:1rem 0;border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Floating assistant */
+    .assistant{position:fixed;right:22px;bottom:22px;width:330px;max-width:85vw;background:#0c1730;border:1px solid rgba(78,116,210,.4);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.5);overflow:hidden;display:none;z-index:9999}
+    .assistant.active{display:block}
+    .asst-head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#0d1d3f;border-bottom:1px solid rgba(255,255,255,.06)}
+    .asst-body{padding:1rem;height:260px;overflow:auto;display:flex;flex-direction:column;gap:.6rem;background:linear-gradient(180deg,#081024,#0b152c)}
+    .msg{max-width:80%;padding:.6rem .7rem;border-radius:12px;font-size:.95rem}
+    .msg.user{margin-left:auto;background:#173265;border:1px solid #274f9f}
+    .msg.bot{background:#0e213f;border:1px solid #244a97}
+    .asst-input{display:flex;gap:.5rem;padding:.6rem;border-top:1px solid rgba(255,255,255,.06);background:#0a142b}
+    .asst-input input{flex:1;background:#0c1834;color:#cfe2ff;border:1px solid #254a98;border-radius:10px;padding:.55rem .7rem}
+    .asst-input button{padding:.55rem .9rem;border-radius:10px;border:1px solid #2a58d8;background:linear-gradient(180deg,#2e6ff2,#1b4fd6);font-weight:800}
+    .assist-toggle{position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;border:1px solid #2a58d8;background:linear-gradient(180deg,#2e6ff2,#1b4fd6);display:grid;place-items:center;box-shadow:0 10px 26px rgba(46,111,242,.4);z-index:9998}
+  </style>
+</head>
+<body>
+  <!-- NOT OFFICIAL BANNER -->
+  <div class="banner">
+    <div class="banner-inner">
+      <div class="warn">⚠️ NOT OFFICIAL YET — PENDING AUTHORIZATION FROM OWNERSHIP TEAM</div>
+      <span>This site may be shut down at any time. Do not use information here as official yet.</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-wrap">
+      <div class="brand">
+        <img src="https://images.unsplash.com/photo-1597004891171-696de0742d0f?q=80&w=256&auto=format&fit=crop" alt="MP" />
+        <div class="title">
+          <b>MP</b>
+          <small>Fort Tedder</small>
+        </div>
+      </div>
+      <div class="links">
+        <a href="#about">ABOUT</a>
+        <a href="#services">SERVICES</a>
+        <a href="#requirements">REQUIREMENTS</a>
+        <a href="#tryouts">TRYOUTS</a>
+        <a href="#links">LINKS</a>
+        <a href="#hicom">HICOM</a>
+        <a href="#propaganda">PROPAGANDA</a>
+      </div>
+      <a class="cta" href="#join">JOIN GAME</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <span class="badge">🔷 CUSA MILITARY POLICE</span>
+      <h1>M I L I T A R Y&nbsp; P O L I C E<br/>D E P A R T M E N T</h1>
+      <p>Protect and enforce the rule of law at Fort Tedder. The CUSA MP Division leads base security, traffic control, detainment, and rapid response — with professionalism, precision, and integrity.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#join">JOIN GAME NOW</a>
+        <a class="btn" href="#requirements">SEE REQUIREMENTS</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>WHO WE ARE</h2>
+        <div class="div"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <p>The Military Police (MP) is an elite enforcement unit within <b>CUSA United States Military</b> responsible for base security, law enforcement, and emergency response at Fort Tedder. We uphold regulations, process detainments, and ensure operational order across all areas of the installation.</p>
+          <br/>
+          <p>As guardians of the base, MPs set the tone for discipline and safety. Our members work closely with MED, SOCOM, and HLS to coordinate security for high‑risk operations and VIP visits.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>BASE SECURITY</h3>
+            <p>Gate control, patrol routes, checkpoint ops, and facility protection.</p>
+          </div>
+          <div class="card">
+            <h3>LAW ENFORCEMENT</h3>
+            <p>Code of Conduct enforcement, citations, detainments, and incident reporting.</p>
+          </div>
+          <div class="card">
+            <h3>RAPID RESPONSE</h3>
+            <p>Immediate reaction force (IRF) deployment for threats and emergencies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / WHAT WE DO -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>WHAT WE DO</h2>
+        <div class="div"></div>
+        <p style="color:#b8c7e0;max-width:760px;margin:0 auto">Our mission is to preserve order through disciplined patrols, precise enforcement, and decisive response. We train MPs to lead with clarity under pressure.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>TRAINING EXCELLENCE</h3>
+          <p>Scenario‑based training covering stops, pursuits, traffic, detainment, and report writing.</p>
+        </div>
+        <div class="card">
+          <h3>TACTICAL READINESS</h3>
+          <p>Stacking, room‑entry, perimeter control, and handoff procedures to specialized units.</p>
+        </div>
+        <div class="card">
+          <h3>COMMUNITY POLICING</h3>
+          <p>Professional conduct on‑base, de‑escalation, and clear communication with civilians and troops.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section id="requirements">
+    <div class="container">
+      <div class="section-title">
+        <h2>DO YOU QUALIFY?</h2>
+        <div class="div"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="checklist">
+          <div class="check-item">
+            <svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M9 16.17 4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            <div>Must be <b>E6+ Staff Sergeant</b>.</div>
+          </div>
+          <div class="check-item">
+            <svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M9 16.17 4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            <div>Must not be blacklisted.</div>
+          </div>
+          <div class="check-item">
+            <svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M9 16.17 4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            <div>Not in other main divisions (SOCOM, MED, SS, HLS) without a Dual Service Request approved.</div>
+          </div>
+          <div class="check-item">
+            <svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M9 16.17 4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            <div>Professionalism, maturity, proper grammar, and <b>abiding by the rules</b>.</div>
+          </div>
+          <div class="check-item">
+            <svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M9 16.17 4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            <div>Common sense and strong situational awareness.</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:.4rem">Uniform & Equipment</h3>
+          <p>MP uniform, patrol vehicle certification, radio discipline, and report forms. Additional credentials awarded for Traffic, IRF, and Training Unit.</p>
+          <br/>
+          <h3 style="margin-bottom:.4rem">Application Note</h3>
+          <p>Only request to join MP after passing a tryout and receiving an invitation in‑game.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRYOUTS -->
+  <section id="tryouts">
+    <div class="container">
+      <div class="section-title">
+        <h2>TRYOUT PROCESS</h2>
+        <div class="div"></div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>JOIN THE GAME</h3><p>Enter Fort Tedder by joining the CUSA Military Roleplay experience on Roblox.</p></div>
+        <div class="step"><div class="num">02</div><h3>WAIT FOR TRYOUT</h3><p>Monitor in‑game announcements for scheduled MP tryouts.</p></div>
+        <div class="step"><div class="num">03</div><h3>PASS ASSESSMENT</h3><p>Demonstrate decision‑making, pursuit policy, and enforcement protocol.</p></div>
+        <div class="step"><div class="num">04</div><h3>BECOME MP</h3><p>Complete onboarding and receive your uniform & patrol certification.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem"><a class="btn primary" href="#join">JOIN GAME NOW</a></div>
+    </div>
+  </section>
+
+  <!-- LINKS -->
+  <section id="links">
+    <div class="container">
+      <div class="section-title">
+        <h2>LINKS</h2>
+        <div class="div"></div>
+      </div>
+      <div class="links-grid">
+        <div class="card links-card">
+          <img src="https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?q=80&w=400&auto=format&fit=crop" alt="CUSA Group"/>
+          <div>
+            <h3>CUSA MAIN GROUP</h3>
+            <p>Join the main CUSA United States Military group.</p>
+            <p style="margin-top:.6rem"><a class="btn" href="https://www.roblox.com/groups/###" target="_blank">JOIN CUSA GROUP ↗</a></p>
+          </div>
+        </div>
+        <div class="card links-card">
+          <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=400&auto=format&fit=crop" alt="MP"/>
+          <div>
+            <h3>MP DIVISION</h3>
+            <p>Specialized enforcement unit. Apply after passing a tryout.</p>
+            <p style="margin-top:.6rem"><a class="btn" href="#" target="_blank">VIEW GROUP PAGE ↗</a></p>
+          </div>
+        </div>
+        <div class="card links-card">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop" alt="Discord"/>
+          <div>
+            <h3>DISCORD SERVER</h3>
+            <p>Stay updated, connect with members, and receive support from the MP team.</p>
+            <p style="margin-top:.6rem"><a class="btn" href="https://discord.gg/###" target="_blank">JOIN DISCORD ↗</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HICOME -->
+  <section id="hicom">
+    <div class="container">
+      <div class="section-title">
+        <h2>HIGH COMMAND</h2>
+        <div class="div"></div>
+      </div>
+      <div class="card hicom-card" style="max-width:520px;margin:0 auto">
+        <div class="avatar">MP</div>
+        <div>
+          <h3>[010] DIRECTOR</h3>
+          <p style="color:#9dbbff">@your_handle</p>
+          <small style="color:#9dbbff">Director</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>WHAT WE OFFER</h2>
+        <div class="div"></div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><h3>SPECIALIZED TRAINING</h3><p>Access exclusive enforcement and pursuit training.</p></div>
+        <div class="card"><h3>CAREER ADVANCEMENT</h3><p>Leadership opportunities and promotion potential.</p></div>
+        <div class="card"><h3>ELITE RECOGNITION</h3><p>MP credentials and uniform insignia that command respect.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPAGANDA -->
+  <section id="propaganda">
+    <div class="container">
+      <div class="section-title">
+        <h2>MP PROPAGANDA</h2>
+        <div class="div"></div>
+        <p style="color:#b8c7e0;max-width:760px;margin:0 auto">Visual excellence representing the power and prestige of the Military Police.</p>
+      </div>
+      <div class="gallery">
+        <div class="card" style="padding:0;overflow:hidden">
+          <img alt="gallery" src="https://images.unsplash.com/photo-1495651779359-881fde1808f5?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;opacity:.95"/>
+        </div>
+        <div class="placeholder">IMAGES COMING SOON</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="join">
+    <div class="container" style="text-align:center">
+      <div class="section-title">
+        <h2>READY TO JOIN?</h2>
+        <div class="div"></div>
+      </div>
+      <p style="color:#b8c7e0;max-width:760px;margin:0 auto 1.2rem">Take the first step toward joining Fort Tedder's Military Police. Your path to enforcement excellence starts here.</p>
+      <div class="hero-actions" style="margin-top:.8rem">
+        <a class="btn primary" href="https://www.roblox.com/games/###" target="_blank">ENTER FORT TEDDER ↗</a>
+        <a class="btn" href="https://discord.gg/###" target="_blank">JOIN DISCORD ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid" style="padding:2rem 1rem">
+      <div>
+        <h3 style="font-family:Rajdhani,Inter,sans-serif">MP</h3>
+        <p style="color:#9dbbff">Military Police — Fort Tedder</p>
+        <p style="margin-top:.6rem;color:#8aa0c7">Enforcing the rules of Fort Tedder since 2018.</p>
+      </div>
+      <div>
+        <h4>QUICK LINKS</h4>
+        <ul style="list-style:none;margin-top:.6rem;display:grid;gap:.4rem;color:#b8c7e0">
+          <li><a href="#join">CUSA Game</a></li>
+          <li><a href="#links">Discord Server</a></li>
+          <li><a href="#links">Roblox Group</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <p style="margin-top:.6rem;color:#b8c7e0">For inquiries, join our Discord server.<br/>Fort Tedder, CUSA Military Base</p>
+      </div>
+    </div>
+    <div class="credits">© 2025 Military Police Department. Part of CUSA United States Military. All rights reserved.</div>
+  </footer>
+
+  <!-- Floating Assistant -->
+  <button class="assist-toggle" id="assistToggle" title="MP Help Assistant">💬</button>
+  <div class="assistant" id="assistant">
+    <div class="asst-head">
+      <strong>MP HELP ASSISTANT</strong>
+      <button onclick="toggleAsst()" style="all:unset;cursor:pointer">✖</button>
+    </div>
+    <div class="asst-body" id="asstBody">
+      <div class="msg bot">Hello! I'm the MP recruitment assistant. Ask me anything about joining the Military Police Division at Fort Tedder.</div>
+    </div>
+    <div class="asst-input">
+      <input id="asstInput" placeholder="Ask about MP..." />
+      <button onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const assistant = document.getElementById('assistant');
+    const toggle = document.getElementById('assistToggle');
+    const bodyEl = document.getElementById('asstBody');
+    const inputEl = document.getElementById('asstInput');
+    function toggleAsst(){assistant.classList.toggle('active')}
+    toggle.addEventListener('click', toggleAsst);
+
+    function sendMsg(){
+      const text = inputEl.value.trim();
+      if(!text) return; inputEl.value='';
+      addMsg(text, 'user');
+      setTimeout(()=>{
+        addMsg(reply(text), 'bot');
+        bodyEl.scrollTop = bodyEl.scrollHeight;
+      }, 350);
+    }
+    function addMsg(t, who){
+      const d=document.createElement('div'); d.className='msg '+who; d.textContent=t; bodyEl.appendChild(d); bodyEl.scrollTop = bodyEl.scrollHeight;
+    }
+    function reply(q){
+      q=q.toLowerCase();
+      if(q.includes('dual')||q.includes('usmc')||q.includes('navy')) return 'Yes, you can be in USMC or Navy and also in MP as long as your division in the other branch is separate and approved. Dual Service Requests are required for certain positions.';
+      if(q.includes('rank')||q.includes('e6')) return 'Tryout minimum rank is E6+ Staff Sergeant.';
+      if(q.includes('blacklist')) return 'Applicants must not be blacklisted.';
+      if(q.includes('tryout')) return 'Watch in-game announcements for MP tryout sessions. Be ready and on base at the time listed.';
+      if(q.includes('rules')) return 'MPs must follow CUSA and Fort Tedder codes: professionalism, proper grammar, no abuse of power, and clear radio comms.';
+      if(q.includes('join')||q.includes('game')) return 'Click “ENTER FORT TEDDER” to join the experience, then attend an MP tryout when announced.';
+      return 'Great question. A member of MP command will clarify on Discord. Meanwhile, check the Requirements section above.';
+    }
+  </script>
+</body>
+</html>
